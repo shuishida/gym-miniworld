@@ -172,6 +172,18 @@ def main():
                     )
                 )
 
+                data = {'updates': j,
+                        'total_num_steps': total_num_steps,
+                        'num_train_episodes': len(episode_rewards),
+                        'mean_reward': np.mean(episode_rewards),
+                        'median_reward': np.median(episode_rewards),
+                        'min_reward': np.min(episode_rewards),
+                        'max_reward': np.max(episode_rewards),
+                        'success_rate': np.count_nonzero(np.greater(episode_rewards, 0)) / len(episode_rewards)
+                        }
+                # overboard
+                logger.append(data)
+
             if args.eval_interval is not None and len(episode_rewards) > 1 and j % args.eval_interval == 0:
                 eval_envs = make_vec_envs(args.env_name, args.seed + args.num_processes, args.num_processes,
                                     args.gamma, eval_log_dir, args.add_timestep, device, True)
