@@ -3,7 +3,7 @@ from gym_miniworld.envs import Maze
 
 
 class MazeS8(Maze):
-    def __init__(self, forward_step=0.7, turn_step=45, max_steps=1500):
+    def __init__(self, forward_step=0.7, turn_step=45, max_steps=1000):
         # Parameters for larger movement steps, fast stepping
         params = DEFAULT_PARAMS.no_random()
         params.set('forward_step', forward_step)
